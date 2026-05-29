@@ -7,6 +7,11 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
     },
+    opts = {
+      window = {
+        width = 25
+      }
+    },
 
     keys = {
       {
