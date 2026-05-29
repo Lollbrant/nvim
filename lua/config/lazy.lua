@@ -46,12 +46,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 desc = desc,
             })
         end
+        local telescope = require("telescope.builtin")
 
-        -- map("n", "gd", vim.lsp.buf.definition)
+        map("n", "gd", vim.lsp.buf.definition)
         map("n", "K", vim.lsp.buf.hover)
         -- map("n", "gr", vim.lsp.buf.references)
         map("n", "<leader>rn", vim.lsp.buf.rename)
         map("n", "<leader>ca", vim.lsp.buf.code_action)
+        -- map("n", "<leader>gd", telescope.lsp_definitions, "Go to definition")
 		map("n", "<leader>lr", "<cmd>lsp restart<CR>")
+
+
+        -- map("n", "gd", function()
+        --     require("telescope.builtin").lsp_definitions({
+        --         jump_type = "never", -- or "split" / "tab"
+        --     })
+        -- end, "Go to definition (popout)")
+
+        -- map("n", "gr", function()
+        --     require("telescope.builtin").lsp_references({
+        --         jump_type = "never", -- or "split" / "tab"
+        --     })
+        -- end, "Go to references (popout)")
+
     end,
 })
