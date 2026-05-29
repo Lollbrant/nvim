@@ -33,3 +33,25 @@ require("lazy").setup({
             -- automatically check for plugin updates
             checker = { enabled = true },
         })
+
+
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local bufnr = args.buf
+
+        local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, {
+                buffer = bufnr,
+                desc = desc,
+            })
+        end
+
+        -- map("n", "gd", vim.lsp.buf.definition)
+        map("n", "K", vim.lsp.buf.hover)
+        -- map("n", "gr", vim.lsp.buf.references)
+        map("n", "<leader>rn", vim.lsp.buf.rename)
+        map("n", "<leader>ca", vim.lsp.buf.code_action)
+		map("n", "<leader>lr", "<cmd>lsp restart<CR>")
+    end,
+})
